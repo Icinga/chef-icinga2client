@@ -1,0 +1,34 @@
+#
+# This file is managed by Chef.
+# Do NOT modify this file directly.
+#
+
+<%= @log_dir -%>/icinga2.log <%= @log_dir -%>/debug.log {
+	daily
+	rotate 7
+	su <%= @user -%> <%= @group %>
+	compress
+	delaycompress
+	missingok
+	notifempty
+	create 644 <%= @user -%> <%= @group %>
+	copytruncate
+	postrotate
+		if ! killall -q -USR1 icinga2; then
+			exit 1
+		fi
+	endscript
+}
+
+<%= @log_dir -%>/error.log {
+	daily
+	su <%= @user -%> <%= @group %>
+	rotate 90
+	compress
+	delaycompress
+	missingok
+	notifempty
+	create 644 <%= @user -%> <%= @group %>
+	copytruncate
+	# TODO: figure out how to get Icinga to re-open this log file
+}
