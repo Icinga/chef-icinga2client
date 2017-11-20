@@ -60,8 +60,90 @@ https://github.com/Icinga/icinga2client
 - `icinga2client::default` - run_list recipe
 
 
-## Core Attributes
-TODO
+## Cookbook Attributes
+
+* `default['icinga2client']['version']` (default: `2.8.0-X, calculated`): icinga2 package version
+
+* `default['icinga2client']['ignore_version']` (default: `false`): ignore icinga2 package version
+
+* `default['icinga2client']['cookbook']` (default: `icinga2client`): icinga2client resources cookbook name
+
+* `default['icinga2client']['disable_conf_d']` (default: `true`): disable icinga2 `conf.d` default configuration directory in `icinga2.conf` and use LWRP to manage icinga2 objects / templates
+
+* `default['icinga2client']['disable_repository_d']` (default: `false`): disable icinga2 `repository.d` directory in `icinga2.conf`
+
+* `default['icinga2client']['include_itl']` (default: `itl, plugins`): `icinga2.conf` include `itl` array attribute
+
+* `default['icinga2client']['conf_dir']` (default: `/etc/icinga2`): icinga2 configuration location
+
+* `default['icinga2client']['conf_d_dir']` (default: `/etc/icinga2/conf.d`): icinga2 conf.d directory location
+
+* `default['icinga2client']['pki_dir']` (default: `/etc/icinga2/pki`): icinga2 pki directory location
+
+* `default['icinga2client']['scripts_dir']` (default: `/etc/icinga2/scripts`): icinga2 script directory location
+
+* `default['icinga2client']['zones_dir']` (default: `/etc/icinga2/zones.d`): icinga2 zones.d directory location
+
+* `default['icinga2client']['objects_d']` (default: `objects.d`): cookbook created icinga2 Object/Templates resources directory name
+
+* `default['icinga2client']['objects_dir']` (default: `/etc/icinga2/objects.d`): cookbook created icinga2 Object/Templates resources directory location
+
+* `default['icinga2client']['user_defined_objects_dir']` (default: `['user_defined_objects']`): user defined configuration directories, each directory is included in `icinga2.conf` file.
+
+* `default['icinga2client']['features_enabled_dir']` (default: `/etc/icinga2/features-enabled`): icinga2 enabled features location
+
+* `default['icinga2client']['features_available_dir']` (default: `/etc/icinga2/features-available`): icinga2 available features location
+
+* `default['icinga2client']['databag']` (default: `icinga2`): icinga2 databag name, currently not used
+
+* `default['icinga2client']['var_dir']` (default: `calculated`): icinga2 run directory
+
+* `default['icinga2client']['run_dir']` (default: `/var/run/icinga2`): icinga2 run directory
+
+* `default['icinga2client']['run_cmd_dir']` (default: `/var/run/icinga2/cmd`): icinga2 location for process `icinga2.cmd`
+
+* `default['icinga2client']['cache_dir']` (default: `/var/cache/icinga2`): icinga2 cache directory location
+
+* `default['icinga2client']['spool_dir']` (default: `/var/spool/icinga2`): icinga2 spool directory location
+
+* `default['icinga2client']['perfdata_dir']` (default: `/var/spool/icinga2/perfdata`): icinga2 perfdata directory location
+
+* `default['icinga2client']['lib_dir']` (default: `/var/lib/icinga2`): icinga2 lib directory location
+
+* `default['icinga2client']['log_dir']` (default: `/var/log/icinga2`): icinga2 core process log directory location
+
+* `default['icinga2client']['cache_dir']` (default: `/var/cache/icinga2`): icinga2 cache directory location
+
+* `default['icinga2client']['service_name']` (default: `icinga2`): icinga2 process name
+
+* `default['icinga2client']['service_config_file']` (default: `/etc/default/icinga2`): icinga2 * process configuration file
+
+* `default['icinga2client']['plugins_dir']` (default: `/usr/lib/nagios/plugins`): icinga2 plugins directory location
+
+* `default['icinga2client']['custom_plugins_dir']` (default: `/opt/icinga2_custom_plugins`): icinga2 custom plugins directory
+
+* `default['icinga2client']['admin_user']` (default: `icingaadmin`): icinga2 admin user
+
+* `default['icinga2client']['user']` (default: `icinga`): icinga2 user
+
+* `default['icinga2client']['group']` (default: `icinga`): icinga2 user group
+
+* `default['icinga2client']['cmdgroup']` (default: `icingacmd`): icinga2 cmd user group
+
+* `default['icinga2client']['endpoint_port']` (default: `5665`): icinga2 endpoint port
+
+* `default['icinga2client']['version_suffix']` (default: `calculated`): icinga2 package suffix
+
+
+## Cookbook Icinga2 Constants Attributes
+
+* `default['icinga2client']['constants']['NodeName']` (default: `node['fqdn']`): icinga2 NodeName constant
+
+* `default['icinga2client']['constants']['PluginDir']` (default: `node['icinga2']['plugins_dir']`): icinga2 plugins directory location
+
+* `default['icinga2client']['constants']['ManubulonPluginDir']` (default: `node['icinga2']['plugins_dir']`): icinga2 plugins directory location
+
+* `default['icinga2client']['constants']['TicketSalt']` (default: `ed25aed394c4bf7d236b347bb67df466`): icinga2 default TicketSalt key
 
 
 ## Contributing

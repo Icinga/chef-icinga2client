@@ -8,8 +8,6 @@ default['icinga2client']['version'] = value_for_platform(
   %w[windows] => { 'default' => '2.8.0' }
 )
 
-default['icinga2client']['enable_env_pki'] = false
-default['icinga2client']['enable_env_custom_pki'] = false
 default['icinga2client']['ignore_version'] = false
 default['icinga2client']['cookbook'] = 'icinga2client'
 
@@ -35,33 +33,14 @@ default['icinga2client']['include_itl'] = if node['platform'] == 'windows'
                                             %w[itl plugins]
                                           end
 
-# includes yum-epel cookbook to setup yum epel repository
-default['icinga2client']['setup_epel'] = true
-
 # object conf file location
 default['icinga2client']['objects_d'] = 'objects.d'
 default['icinga2client']['objects_dir'] = ::File.join(node['icinga2client']['conf_dir'], node['icinga2client']['objects_d'])
 
 # user defined icing2 object / configuration
 default['icinga2client']['user_defined_objects_dir'] = %w[user_defined_objects]
-
 default['icinga2client']['features_enabled_dir'] = ::File.join(node['icinga2client']['conf_dir'], 'features-enabled')
 default['icinga2client']['features_available_dir'] = ::File.join(node['icinga2client']['conf_dir'], 'features-available')
-
-default['icinga2client']['cluster_attribute'] = nil
-default['icinga2client']['application_attribute'] = nil
-default['icinga2client']['enable_cluster_hostgroup'] = true
-default['icinga2client']['enable_application_hostgroup'] = true
-default['icinga2client']['enable_role_hostgroup'] = false
-default['icinga2client']['limit_region'] = true
-
-# host attribute to use for Host Object
-# attribute display_name in LWRP environment
-default['icinga2client']['host_display_name_attr'] = 'hostname'
-default['icinga2client']['use_fqdn_resolv'] = false
-default['icinga2client']['failover_fqdn_address'] = true
-default['icinga2client']['ignore_node_error'] = false
-default['icinga2client']['ignore_resolv_error'] = true
 
 # icinga2 resources data bag
 default['icinga2client']['databag'] = 'icinga2client'
@@ -80,7 +59,6 @@ default['icinga2client']['spool_dir'] = ::File.join(node['icinga2client']['var_d
 default['icinga2client']['perfdata_dir'] = ::File.join(node['icinga2client']['var_dir'], 'spool/icinga2/perfdata')
 default['icinga2client']['lib_dir'] = ::File.join(node['icinga2client']['var_dir'], 'lib/icinga2')
 default['icinga2client']['log_dir'] = ::File.join(node['icinga2client']['var_dir'], 'log/icinga2')
-default['icinga2client']['cache_dir'] = ::File.join(node['icinga2client']['var_dir'], 'cache/icinga2')
 default['icinga2client']['service_name'] = 'icinga2'
 
 case node['platform_family']
@@ -118,11 +96,6 @@ default['icinga2client']['custom_plugins_dir'] = if node['platform'] == 'windows
 default['icinga2client']['admin_user'] = 'icingaadmin'
 default['icinga2client']['endpoint_port'] = 5665
 
-# ulimit
-default['icinga2client']['limits']['memlock']    = 'unlimited'
-default['icinga2client']['limits']['nofile']     = 48_000
-default['icinga2client']['limits']['nproc']      = 'unlimited'
-
 # version suffix
 case node['platform']
 when 'centos', 'redhat', 'fedora', 'amazon'
@@ -140,24 +113,3 @@ default['icinga2client']['constants']['NodeName'] = node['fqdn']
 default['icinga2client']['constants']['PluginDir'] = node['icinga2client']['plugins_dir']
 default['icinga2client']['constants']['ManubulonPluginDir'] = node['icinga2client']['plugins_dir']
 default['icinga2client']['constants']['TicketSalt'] = 'ed25aed394c4bf7d236b347bb67df466'
-
-# objects
-default['icinga2client']['server']['object']['global-templates'] = false
-default['icinga2client']['server']['object']['host']['import'] = 'generic-host'
-default['icinga2client']['server']['object']['host']['max_check_attempts'] = 3
-default['icinga2client']['server']['object']['host']['check_period'] = nil
-default['icinga2client']['server']['object']['host']['notification_period'] = nil
-default['icinga2client']['server']['object']['host']['check_interval'] = '1m'
-default['icinga2client']['server']['object']['host']['retry_interval'] = '30s'
-default['icinga2client']['server']['object']['host']['enable_notifications'] = true
-default['icinga2client']['server']['object']['host']['enable_active_checks'] = true
-default['icinga2client']['server']['object']['host']['enable_passive_checks'] = false
-default['icinga2client']['server']['object']['host']['enable_event_handler'] = true
-default['icinga2client']['server']['object']['host']['enable_flapping'] = true
-default['icinga2client']['server']['object']['host']['enable_perfdata'] = true
-default['icinga2client']['server']['object']['host']['event_command'] = nil
-default['icinga2client']['server']['object']['host']['flapping_threshold'] = nil
-default['icinga2client']['server']['object']['host']['volatile'] = nil
-default['icinga2client']['server']['object']['host']['check_command'] = 'hostalive'
-default['icinga2client']['server']['object']['host']['zone'] = nil
-default['icinga2client']['server']['object']['host']['command_endpoint'] = nil
