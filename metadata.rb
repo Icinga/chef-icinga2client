@@ -12,6 +12,6 @@ source_url 'https://github.com/Icinga/chef-icinga2client' if respond_to?(:source
 
 depends 'icinga2repo'
 
-%w[redhat centos amazon ubuntu debian raspbian].each do |os|
+%w[fedora redhat centos amazon ubuntu debian raspbian].each do |os|
   supports os
 end

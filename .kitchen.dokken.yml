@@ -18,6 +18,8 @@ provisioner:
         install_recommends: false
     icinga2:
       ignore_version: false
+      # temp fix
+      disable_conf_d: false
 
 platforms:
   - name: ubuntu-14
@@ -99,10 +101,6 @@ suites:
         - test/smoke/default
     run_list:
       - recipe[icinga2client::default]
-    attributes:
-      icinga2:
-        # temp fix
-        disable_conf_d: false
 
   - name: chef13
     driver:
@@ -112,7 +110,3 @@ suites:
         - test/smoke/default
     run_list:
       - recipe[icinga2client::default]
-    attributes:
-      icinga2:
-        # temp fix
-        disable_conf_d: false
