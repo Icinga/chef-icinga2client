@@ -9,7 +9,7 @@ provisioner:
   name: chef_zero
   attributes:
     icinga2:
-      ignore_version: true
+      ignore_version: false
       # temp fix
       disable_conf_d: false
     apt:
